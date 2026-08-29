@@ -34,11 +34,12 @@
     "pmsSchedule": [
       {
         "interval": 10,
+        "description": "First annual maintenance service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace with 0W-20 grade" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Tyre Pressure", "replacementRequired": "no", "notes": "Check and adjust" },
-          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brake system" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 1800, "replacementRequired": "yes", "notes": "Replace with 0W-20 grade" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 350, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Tyre Pressure Check", "category": "Tyres", "cost": 0, "replacementRequired": "no", "notes": "Check and adjust" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brake system" }
         ]
       }
     ],
@@ -82,10 +83,11 @@
     "pmsSchedule": [
       {
         "interval": 10,
+        "description": "Standard 10,000 km service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "General Inspection", "replacementRequired": "no", "notes": "Full vehicle inspection" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 1800, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 350, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "General Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Full vehicle inspection" }
         ]
       }
     ],
@@ -130,10 +132,11 @@
     "pmsSchedule": [
       {
         "interval": 10,
+        "description": "Standard annual maintenance.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brakes" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2200, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 400, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brakes" }
         ]
       }
     ],
@@ -190,107 +193,118 @@
     "pmsSchedule": [
       {
         "interval": 10,
+        "description": "First annual maintenance service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil with recommended grade" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect front and rear brake system" },
-          { "serviceName": "Tyre Pressure", "replacementRequired": "no", "notes": "Check and adjust tyre pressure" },
-          { "serviceName": "General Inspection", "replacementRequired": "no", "notes": "Perform complete vehicle inspection" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil with recommended grade" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect front and rear brake system" },
+          { "serviceName": "Tyre Pressure", "category": "Tyres", "cost": 0, "replacementRequired": "no", "notes": "Check and adjust tyre pressure" },
+          { "serviceName": "General Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Perform complete vehicle inspection" }
         ]
       },
       {
         "interval": 20,
+        "description": "Second annual maintenance. Includes brake fluid flush.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter Inspection", "replacementRequired": "no", "notes": "Clean or replace if required" },
-          { "serviceName": "Cabin Filter", "replacementRequired": "yes", "notes": "Replace cabin filter" },
-          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brake pads and discs" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Brake Fluid (DOT 4)", "category": "Fluids", "cost": 1200, "replacementRequired": "yes", "notes": "Replace brake fluid" },
+          { "serviceName": "Cabin Air Filter", "category": "HVAC", "cost": 650, "replacementRequired": "yes", "notes": "Replace cabin filter" },
+          { "serviceName": "Air Filter Inspection", "category": "Filters", "cost": 0, "replacementRequired": "no", "notes": "Clean or replace if required" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brake pads and discs" }
         ]
       },
       {
         "interval": 30,
+        "description": "Third annual maintenance.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter", "replacementRequired": "yes", "notes": "Replace air filter" },
-          { "serviceName": "Brake Fluid Inspection", "replacementRequired": "no", "notes": "Check brake fluid condition" },
-          { "serviceName": "Battery Inspection", "replacementRequired": "no", "notes": "Check battery voltage and terminals" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter", "category": "Filters", "cost": 850, "replacementRequired": "yes", "notes": "Replace air filter" },
+          { "serviceName": "Brake Fluid Inspection", "category": "Fluids", "cost": 0, "replacementRequired": "no", "notes": "Check brake fluid condition" },
+          { "serviceName": "Battery Inspection", "category": "Electrical", "cost": 0, "replacementRequired": "no", "notes": "Check battery voltage and terminals" }
         ]
       },
       {
         "interval": 40,
+        "description": "Fourth annual major service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Cabin Filter", "replacementRequired": "yes", "notes": "Replace cabin filter" },
-          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brake system" },
-          { "serviceName": "Suspension Inspection", "replacementRequired": "no", "notes": "Inspect suspension components" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Cabin Filter", "category": "HVAC", "cost": 650, "replacementRequired": "yes", "notes": "Replace cabin filter" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brake system" },
+          { "serviceName": "Suspension Inspection", "category": "Suspension", "cost": 0, "replacementRequired": "no", "notes": "Inspect suspension components" }
         ]
       },
       {
         "interval": 50,
+        "description": "Fifth annual maintenance.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter", "replacementRequired": "yes", "notes": "Replace air filter" },
-          { "serviceName": "Spark Plug Inspection", "replacementRequired": "no", "notes": "Inspect spark plug condition and gap" },
-          { "serviceName": "Drive Belt Inspection", "replacementRequired": "no", "notes": "Inspect drive belt for cracks and wear" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter", "category": "Filters", "cost": 850, "replacementRequired": "yes", "notes": "Replace air filter" },
+          { "serviceName": "Spark Plug Inspection", "category": "Ignition", "cost": 0, "replacementRequired": "no", "notes": "Inspect spark plug condition and gap" },
+          { "serviceName": "Drive Belt Inspection", "category": "Engine", "cost": 0, "replacementRequired": "no", "notes": "Inspect drive belt for cracks and wear" }
         ]
       },
       {
         "interval": 60,
+        "description": "Sixth annual major service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Brake Fluid", "replacementRequired": "yes", "notes": "Replace brake fluid if due" },
-          { "serviceName": "Coolant Inspection", "replacementRequired": "no", "notes": "Check coolant level and condition" },
-          { "serviceName": "Battery Inspection", "replacementRequired": "no", "notes": "Check battery performance" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Brake Fluid", "category": "Fluids", "cost": 1200, "replacementRequired": "yes", "notes": "Replace brake fluid if due" },
+          { "serviceName": "Coolant Inspection", "category": "Cooling", "cost": 0, "replacementRequired": "no", "notes": "Check coolant level and condition" },
+          { "serviceName": "Battery Inspection", "category": "Electrical", "cost": 0, "replacementRequired": "no", "notes": "Check battery performance" }
         ]
       },
       {
         "interval": 70,
+        "description": "Seventh annual maintenance.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter", "replacementRequired": "yes", "notes": "Replace air filter" },
-          { "serviceName": "Cabin Filter", "replacementRequired": "yes", "notes": "Replace cabin filter" },
-          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brake pads and discs" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter", "category": "Filters", "cost": 850, "replacementRequired": "yes", "notes": "Replace air filter" },
+          { "serviceName": "Cabin Filter", "category": "HVAC", "cost": 650, "replacementRequired": "yes", "notes": "Replace cabin filter" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brake pads and discs" }
         ]
       },
       {
         "interval": 80,
+        "description": "Eighth annual major service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Transmission Fluid Inspection", "replacementRequired": "no", "notes": "Inspect DCT transmission fluid" },
-          { "serviceName": "Drive Belt", "replacementRequired": "yes", "notes": "Replace drive belt if required" },
-          { "serviceName": "Water Pump Inspection", "replacementRequired": "no", "notes": "Check water pump for leaks and noise" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Transmission Fluid Inspection", "category": "Transmission", "cost": 0, "replacementRequired": "no", "notes": "Inspect DCT transmission fluid" },
+          { "serviceName": "Drive Belt", "category": "Engine", "cost": 1850, "replacementRequired": "yes", "notes": "Replace drive belt if required" },
+          { "serviceName": "Water Pump Inspection", "category": "Cooling", "cost": 0, "replacementRequired": "no", "notes": "Check water pump for leaks and noise" }
         ]
       },
       {
         "interval": 90,
+        "description": "Ninth annual maintenance.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter", "replacementRequired": "yes", "notes": "Replace air filter" },
-          { "serviceName": "Spark Plug", "replacementRequired": "yes", "notes": "Replace spark plugs" },
-          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect entire braking system" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter", "category": "Filters", "cost": 850, "replacementRequired": "yes", "notes": "Replace air filter" },
+          { "serviceName": "Spark Plug", "category": "Ignition", "cost": 2400, "replacementRequired": "yes", "notes": "Replace spark plugs" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect entire braking system" }
         ]
       },
       {
         "interval": 100,
+        "description": "Tenth annual comprehensive service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter", "replacementRequired": "yes", "notes": "Replace air filter" },
-          { "serviceName": "Cabin Filter", "replacementRequired": "yes", "notes": "Replace cabin filter" },
-          { "serviceName": "Coolant", "replacementRequired": "yes", "notes": "Replace coolant according to manufacturer schedule" },
-          { "serviceName": "Brake Fluid", "replacementRequired": "yes", "notes": "Replace brake fluid" },
-          { "serviceName": "Spark Plug", "replacementRequired": "yes", "notes": "Replace spark plugs" },
-          { "serviceName": "Drive Belt", "replacementRequired": "yes", "notes": "Replace drive belt" },
-          { "serviceName": "Battery", "replacementRequired": "no", "notes": "Test battery health and replace if required" },
-          { "serviceName": "Complete Vehicle Inspection", "replacementRequired": "no", "notes": "Perform complete inspection of vehicle" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter", "category": "Filters", "cost": 850, "replacementRequired": "yes", "notes": "Replace air filter" },
+          { "serviceName": "Cabin Filter", "category": "HVAC", "cost": 650, "replacementRequired": "yes", "notes": "Replace cabin filter" },
+          { "serviceName": "Coolant Replacement", "category": "Cooling", "cost": 1600, "replacementRequired": "yes", "notes": "Replace coolant according to manufacturer schedule" },
+          { "serviceName": "Brake Fluid", "category": "Fluids", "cost": 1200, "replacementRequired": "yes", "notes": "Replace brake fluid" },
+          { "serviceName": "Spark Plug", "category": "Ignition", "cost": 2400, "replacementRequired": "yes", "notes": "Replace spark plugs" },
+          { "serviceName": "Drive Belt", "category": "Engine", "cost": 1850, "replacementRequired": "yes", "notes": "Replace drive belt" },
+          { "serviceName": "Battery Inspection", "category": "Electrical", "cost": 0, "replacementRequired": "no", "notes": "Test battery health and replace if required" },
+          { "serviceName": "Complete Vehicle Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Perform complete inspection of vehicle" }
         ]
       }
     ],
@@ -333,10 +347,11 @@
     "pmsSchedule": [
       {
         "interval": 15,
+        "description": "Standard 15,000 km service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "General Inspection", "replacementRequired": "no", "notes": "Full vehicle inspection" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2100, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 380, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "General Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Full vehicle inspection" }
         ]
       }
     ],
@@ -379,10 +394,11 @@
     "pmsSchedule": [
       {
         "interval": 15,
+        "description": "Standard 15,000 km service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brake pads" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2100, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 380, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brake pads" }
         ]
       }
     ],
@@ -426,11 +442,12 @@
     "pmsSchedule": [
       {
         "interval": 10,
+        "description": "Standard annual diesel service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace diesel engine oil 5W-30" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Fuel Filter", "replacementRequired": "no", "notes": "Inspect fuel filter" },
-          { "serviceName": "General Inspection", "replacementRequired": "no", "notes": "Full vehicle inspection" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 3500, "replacementRequired": "yes", "notes": "Replace diesel engine oil 5W-30" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 550, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Fuel Filter Inspection", "category": "Filters", "cost": 0, "replacementRequired": "no", "notes": "Inspect fuel filter" },
+          { "serviceName": "General Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Full vehicle inspection" }
         ]
       }
     ],
@@ -474,11 +491,12 @@
     "pmsSchedule": [
       {
         "interval": 10,
+        "description": "Standard annual 4WD service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace diesel engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "4WD System Check", "replacementRequired": "no", "notes": "Inspect 4WD engagement" },
-          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brakes all round" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 3500, "replacementRequired": "yes", "notes": "Replace diesel engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 550, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "4WD System Check", "category": "Drivetrain", "cost": 0, "replacementRequired": "no", "notes": "Inspect 4WD engagement" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brakes all round" }
         ]
       }
     ],
@@ -525,11 +543,12 @@
     "pmsSchedule": [
       {
         "interval": 10,
+        "description": "Standard 10,000 km service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace with Honda-approved 0W-20" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "CVT Fluid Inspection", "replacementRequired": "no", "notes": "Check CVT fluid level and condition" },
-          { "serviceName": "General Inspection", "replacementRequired": "no", "notes": "Full vehicle inspection" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2400, "replacementRequired": "yes", "notes": "Replace with Honda-approved 0W-20" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 420, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "CVT Fluid Inspection", "category": "Transmission", "cost": 0, "replacementRequired": "no", "notes": "Check CVT fluid level and condition" },
+          { "serviceName": "General Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Full vehicle inspection" }
         ]
       }
     ],
@@ -573,11 +592,12 @@
     "pmsSchedule": [
       {
         "interval": 10,
+        "description": "Standard annual service.",
         "serviceItems": [
-          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace with 5W-30 diesel engine oil" },
-          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Fuel Filter Inspection", "replacementRequired": "no", "notes": "Inspect fuel filter for clogging" },
-          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect all brake pads and discs" }
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 3800, "replacementRequired": "yes", "notes": "Replace with 5W-30 diesel engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 480, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Fuel Filter Inspection", "category": "Filters", "cost": 0, "replacementRequired": "no", "notes": "Inspect fuel filter for clogging" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect all brake pads and discs" }
         ]
       }
     ],

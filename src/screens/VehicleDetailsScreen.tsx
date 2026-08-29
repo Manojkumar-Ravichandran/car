@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   View,
   Text,
@@ -6,13 +6,12 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-  SafeAreaView,
   StatusBar,
-  FlatList,
   Platform,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import { Vehicle } from "../types/vehicle";
+import { Vehicle, ServiceItem } from "../types/vehicle";
 import { COLORS } from "../constants/colors";
 
 interface Props {
@@ -22,13 +21,7 @@ interface Props {
 
 type TabId = "specs" | "parts" | "pms" | "notes";
 
-interface Tab {
-  id: TabId;
-  label: string;
-  icon: keyof typeof Ionicons.glyphMap;
-}
-
-const TABS: Tab[] = [
+const TABS: { id: TabId; label: string; icon: keyof typeof Ionicons.glyphMap }[] = [
   { id: "specs", label: "Specs", icon: "options-outline" },
   { id: "parts", label: "Parts Catalog", icon: "construct-outline" },
   { id: "pms", label: "PMS Schedule", icon: "calendar-outline" },
@@ -67,12 +60,11 @@ function PartsRow({ label, value }: { label: string; value?: string }) {
   );
 }
 
-// ─── Specs Tab ───────────────────────────────────────────────────────────────
-function SpecsTab({ vehicle }: { vehicle: Vehicle }) {
+// ─── Specs Content ───────────────────────────────────────────────────────────
+function SpecsContent({ vehicle }: { vehicle: Vehicle }) {
   const ts = vehicle.technicalSpecifications;
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.tabContent}>
-      {/* Engine & Drivetrain */}
+    <View style={styles.tabContentPad}>
       <Text style={styles.sectionTitle}>Engine &amp; Drivetrain</Text>
       <View style={styles.card}>
         <SpecRow icon="settings-outline" label="Engine Code" value={vehicle.engineCode} />
@@ -90,14 +82,21 @@ function SpecsTab({ vehicle }: { vehicle: Vehicle }) {
         <SpecRow icon="layers-outline" label="Segment" value={vehicle.vehicleSegment} />
       </View>
 
-      {/* Fluid Capacities & Grades */}
       <Text style={styles.sectionTitle}>Fluid Capacities &amp; Grades</Text>
       <View style={styles.card}>
-        <SpecRow icon="water-outline" label="Engine Oil" value={ts ? `${ts.engineOilCapacity} (${ts.engineOilGrade})` : undefined} />
+        <SpecRow
+          icon="water-outline"
+          label="Engine Oil"
+          value={ts ? `${ts.engineOilCapacity || ""} (${ts.engineOilGrade || ""})` : undefined}
+        />
         {ts?.gearOilCapacity ? (
           <>
             <View style={styles.divider} />
-            <SpecRow icon="git-branch-outline" label="Gear Oil" value={`${ts.gearOilCapacity} (${ts.gearOilGrade})`} />
+            <SpecRow
+              icon="git-branch-outline"
+              label="Gear Oil"
+              value={`${ts.gearOilCapacity} (${ts.gearOilGrade || ""})`}
+            />
           </>
         ) : null}
         <View style={styles.divider} />
@@ -112,7 +111,6 @@ function SpecsTab({ vehicle }: { vehicle: Vehicle }) {
         ) : null}
       </View>
 
-      {/* Tyre & Electrical */}
       <Text style={styles.sectionTitle}>Tyre &amp; Electrical</Text>
       <View style={styles.card}>
         <SpecRow icon="radio-button-on-outline" label="Tyre Pressure (Front)" value={ts?.tyrePressureFront} />
@@ -127,13 +125,13 @@ function SpecsTab({ vehicle }: { vehicle: Vehicle }) {
           </>
         ) : null}
       </View>
-      <View style={{ height: 30 }} />
-    </ScrollView>
+      <View style={{ height: 40 }} />
+    </View>
   );
 }
 
-// ─── Parts Tab ───────────────────────────────────────────────────────────────
-function PartsTab({ vehicle }: { vehicle: Vehicle }) {
+// ─── Parts Content ───────────────────────────────────────────────────────────
+function PartsContent({ vehicle }: { vehicle: Vehicle }) {
   const fp = vehicle.filtersAndParts;
   if (!fp) {
     return (
@@ -143,41 +141,76 @@ function PartsTab({ vehicle }: { vehicle: Vehicle }) {
       </View>
     );
   }
+
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.tabContent}>
+    <View style={styles.tabContentPad}>
       <Text style={styles.sectionTitle}>Filters</Text>
       <View style={styles.card}>
         <PartsRow label="Oil Filter" value={fp.oilFilter} />
-        {fp.airFilter ? <><View style={styles.divider} /><PartsRow label="Air Filter" value={fp.airFilter} /></> : null}
-        {fp.cabinFilter ? <><View style={styles.divider} /><PartsRow label="Cabin Filter" value={fp.cabinFilter} /></> : null}
-        {fp.fuelFilter ? <><View style={styles.divider} /><PartsRow label="Fuel Filter" value={fp.fuelFilter} /></> : null}
+        {fp.airFilter ? (
+          <>
+            <View style={styles.divider} />
+            <PartsRow label="Air Filter" value={fp.airFilter} />
+          </>
+        ) : null}
+        {fp.cabinFilter ? (
+          <>
+            <View style={styles.divider} />
+            <PartsRow label="Cabin Filter" value={fp.cabinFilter} />
+          </>
+        ) : null}
+        {fp.fuelFilter ? (
+          <>
+            <View style={styles.divider} />
+            <PartsRow label="Fuel Filter" value={fp.fuelFilter} />
+          </>
+        ) : null}
       </View>
 
       <Text style={styles.sectionTitle}>Drive &amp; Belt</Text>
       <View style={styles.card}>
         {fp.driveBeltNumber ? <PartsRow label="Drive Belt" value={fp.driveBeltNumber} /> : null}
-        {fp.timingChain ? <><View style={styles.divider} /><PartsRow label="Timing Chain" value={fp.timingChain === "yes" ? "Yes (Chain Drive)" : "No"} /></> : null}
-        {fp.timingBeltNumber && fp.timingBeltNumber.trim() !== "" ? <><View style={styles.divider} /><PartsRow label="Timing Belt" value={fp.timingBeltNumber} /></> : null}
-        {fp.waterPumpPartNumber ? <><View style={styles.divider} /><PartsRow label="Water Pump" value={fp.waterPumpPartNumber} /></> : null}
+        {fp.timingChain ? (
+          <>
+            <View style={styles.divider} />
+            <PartsRow label="Timing Chain" value={fp.timingChain === "yes" ? "Yes (Chain Drive)" : "No"} />
+          </>
+        ) : null}
+        {fp.timingBeltNumber && fp.timingBeltNumber.trim() !== "" ? (
+          <>
+            <View style={styles.divider} />
+            <PartsRow label="Timing Belt" value={fp.timingBeltNumber} />
+          </>
+        ) : null}
+        {fp.waterPumpPartNumber ? (
+          <>
+            <View style={styles.divider} />
+            <PartsRow label="Water Pump" value={fp.waterPumpPartNumber} />
+          </>
+        ) : null}
       </View>
 
       <Text style={styles.sectionTitle}>Drain Parts</Text>
       <View style={styles.card}>
         {fp.drainPlugPartNumber ? <PartsRow label="Drain Plug" value={fp.drainPlugPartNumber} /> : null}
-        {fp.drainWasherPartNumber ? <><View style={styles.divider} /><PartsRow label="Drain Washer" value={fp.drainWasherPartNumber} /></> : null}
+        {fp.drainWasherPartNumber ? (
+          <>
+            <View style={styles.divider} />
+            <PartsRow label="Drain Washer" value={fp.drainWasherPartNumber} />
+          </>
+        ) : null}
       </View>
-      <View style={{ height: 30 }} />
-    </ScrollView>
+      <View style={{ height: 40 }} />
+    </View>
   );
 }
 
-// ─── PMS Tab ─────────────────────────────────────────────────────────────────
-function PmsTab({ vehicle }: { vehicle: Vehicle }) {
+// ─── PMS Content ─────────────────────────────────────────────────────────────
+function PmsContent({ vehicle }: { vehicle: Vehicle }) {
   const schedules = vehicle.pmsSchedule || [];
   const [selectedInterval, setSelectedInterval] = useState(
-    schedules.length > 0 ? schedules[0].interval : 0
+    schedules.length > 0 ? (schedules.find((s) => s.interval === 20)?.interval || schedules[0].interval) : 0
   );
-
   const selected = schedules.find((s) => s.interval === selectedInterval);
 
   if (schedules.length === 0) {
@@ -189,13 +222,22 @@ function PmsTab({ vehicle }: { vehicle: Vehicle }) {
     );
   }
 
+  // Calculate estimated total cost for selected interval
+  const totalCost = selected?.serviceItems.reduce((sum, item) => sum + (item.cost || 0), 0) || 0;
+
   return (
     <View style={{ flex: 1 }}>
-      {/* Interval Selector */}
+      {/* Interval Header line: Select Service Interval + Est. Cost */}
       <View style={styles.intervalHeader}>
         <Text style={styles.intervalHeaderTitle}>Select Service Interval</Text>
+        {totalCost > 0 && (
+          <Text style={styles.estCostText}>
+            Est. Cost: <Text style={styles.estCostValue}>₹{totalCost}</Text>
+          </Text>
+        )}
       </View>
 
+      {/* Interval Chips */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -209,15 +251,9 @@ function PmsTab({ vehicle }: { vehicle: Vehicle }) {
               key={s.interval}
               onPress={() => setSelectedInterval(s.interval)}
               style={[styles.intervalChip, isActive && styles.intervalChipActive]}
+              activeOpacity={0.8}
             >
-              {isActive && (
-                <Ionicons
-                  name="checkmark"
-                  size={13}
-                  color="#fff"
-                  style={{ marginRight: 4 }}
-                />
-              )}
+              {isActive && <Ionicons name="checkmark" size={14} color="#1D4ED8" style={{ marginRight: 4 }} />}
               <Text style={[styles.intervalChipText, isActive && styles.intervalChipTextActive]}>
                 PMS{s.interval} ({s.interval}k km)
               </Text>
@@ -226,73 +262,82 @@ function PmsTab({ vehicle }: { vehicle: Vehicle }) {
         })}
       </ScrollView>
 
-      {/* Service Items */}
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={styles.tabContent}
-      >
+      {/* Interval Description Yellow Banner */}
+      {selected?.description ? (
+        <View style={styles.intervalBanner}>
+          <Text style={styles.intervalBannerText}>{selected.description}</Text>
+        </View>
+      ) : null}
+
+      {/* Required Services & Inspections */}
+      <View style={styles.tabContentPad}>
         <Text style={styles.sectionTitle}>Required Services &amp; Inspections</Text>
-        {selected?.serviceItems.map((item, idx) => (
-          <View key={idx} style={styles.serviceCard}>
-            <View style={styles.serviceIconWrap}>
-              <Ionicons
-                name={
-                  item.serviceName.toLowerCase().includes("oil")
-                    ? "water-outline"
-                    : item.serviceName.toLowerCase().includes("filter")
-                    ? "funnel-outline"
-                    : item.serviceName.toLowerCase().includes("brake")
-                    ? "disc-outline"
-                    : item.serviceName.toLowerCase().includes("spark")
-                    ? "flash-outline"
-                    : item.serviceName.toLowerCase().includes("battery")
-                    ? "battery-charging-outline"
-                    : item.serviceName.toLowerCase().includes("tyre")
-                    ? "radio-button-on-outline"
-                    : item.serviceName.toLowerCase().includes("coolant")
-                    ? "thermometer-outline"
-                    : "build-outline"
-                }
-                size={22}
-                color={COLORS.primary}
-              />
-            </View>
-            <View style={styles.serviceInfo}>
-              <Text style={styles.serviceName}>{item.serviceName}</Text>
-              <Text style={styles.serviceNote}>{item.notes}</Text>
-            </View>
-            <View style={styles.serviceRight}>
-              <View
-                style={[
-                  styles.replaceBadge,
-                  item.replacementRequired === "yes"
-                    ? styles.replaceBadgeYes
-                    : styles.replaceBadgeNo,
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.replaceBadgeText,
-                    item.replacementRequired === "yes"
-                      ? styles.replaceBadgeTextYes
-                      : styles.replaceBadgeTextNo,
-                  ]}
-                >
-                  {item.replacementRequired === "yes" ? "Replace" : "Inspect"}
+        {selected?.serviceItems.map((item, idx) => {
+          const itemCategory = item.category || (item.replacementRequired === "yes" ? "Lubrication" : "Inspections");
+          return (
+            <View key={idx} style={styles.serviceCard}>
+              <View style={styles.serviceIconWrap}>
+                <Ionicons
+                  name={
+                    item.serviceName.toLowerCase().includes("oil filter") || item.serviceName.toLowerCase().includes("cabin") || item.serviceName.toLowerCase().includes("air filter")
+                      ? "funnel-outline"
+                      : item.serviceName.toLowerCase().includes("oil") || item.serviceName.toLowerCase().includes("fluid") || item.serviceName.toLowerCase().includes("coolant")
+                      ? "water-outline"
+                      : item.serviceName.toLowerCase().includes("brake")
+                      ? "disc-outline"
+                      : item.serviceName.toLowerCase().includes("spark")
+                      ? "flash-outline"
+                      : item.serviceName.toLowerCase().includes("battery")
+                      ? "battery-charging-outline"
+                      : item.serviceName.toLowerCase().includes("tyre")
+                      ? "radio-button-on-outline"
+                      : "build-outline"
+                  }
+                  size={22}
+                  color={COLORS.primary}
+                />
+              </View>
+              <View style={styles.serviceInfo}>
+                <Text style={styles.serviceName}>{item.serviceName}</Text>
+                <Text style={styles.serviceMeta}>
+                  {itemCategory} • Interval: {selectedInterval}k km
                 </Text>
               </View>
-              <Ionicons name="chevron-forward" size={16} color={COLORS.gray} style={{ marginTop: 6 }} />
+              <View style={styles.serviceRight}>
+                {item.cost && item.cost > 0 ? (
+                  <View style={styles.costRow}>
+                    <Text style={styles.costText}>₹{item.cost}</Text>
+                    <Ionicons name="chevron-forward" size={16} color={COLORS.gray} style={{ marginLeft: 4 }} />
+                  </View>
+                ) : (
+                  <View
+                    style={[
+                      styles.replaceBadge,
+                      item.replacementRequired === "yes" ? styles.replaceBadgeYes : styles.replaceBadgeNo,
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        styles.replaceBadgeText,
+                        item.replacementRequired === "yes" ? styles.replaceBadgeTextYes : styles.replaceBadgeTextNo,
+                      ]}
+                    >
+                      {item.replacementRequired === "yes" ? "Replace" : "Inspect"}
+                    </Text>
+                  </View>
+                )}
+              </View>
             </View>
-          </View>
-        ))}
-        <View style={{ height: 30 }} />
-      </ScrollView>
+          );
+        })}
+        <View style={{ height: 40 }} />
+      </View>
     </View>
   );
 }
 
-// ─── Notes Tab ───────────────────────────────────────────────────────────────
-function NotesTab({ vehicle }: { vehicle: Vehicle }) {
+// ─── Notes Content ───────────────────────────────────────────────────────────
+function NotesContent({ vehicle }: { vehicle: Vehicle }) {
   const notes = vehicle.additionalNotes;
   if (!notes) {
     return (
@@ -302,20 +347,18 @@ function NotesTab({ vehicle }: { vehicle: Vehicle }) {
       </View>
     );
   }
-  return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.tabContent}>
-      {notes.specialNotes ? (
-        <>
-          <View style={styles.noteCard}>
-            <View style={styles.noteHeader}>
-              <Ionicons name="star-outline" size={18} color="#F59E0B" />
-              <Text style={[styles.noteTitle, { color: "#B45309" }]}>Special Notes</Text>
-            </View>
-            <Text style={styles.noteBody}>{notes.specialNotes}</Text>
-          </View>
-        </>
-      ) : null}
 
+  return (
+    <View style={styles.tabContentPad}>
+      {notes.specialNotes ? (
+        <View style={styles.noteCard}>
+          <View style={styles.noteHeader}>
+            <Ionicons name="star-outline" size={18} color="#F59E0B" />
+            <Text style={[styles.noteTitle, { color: "#B45309" }]}>Special Notes</Text>
+          </View>
+          <Text style={styles.noteBody}>{notes.specialNotes}</Text>
+        </View>
+      ) : null}
       {notes.commonProblems ? (
         <View style={[styles.noteCard, styles.noteCardDanger]}>
           <View style={styles.noteHeader}>
@@ -325,7 +368,6 @@ function NotesTab({ vehicle }: { vehicle: Vehicle }) {
           <Text style={styles.noteBody}>{notes.commonProblems}</Text>
         </View>
       ) : null}
-
       {notes.workshopInstructions ? (
         <View style={[styles.noteCard, styles.noteCardInfo]}>
           <View style={styles.noteHeader}>
@@ -335,88 +377,115 @@ function NotesTab({ vehicle }: { vehicle: Vehicle }) {
           <Text style={styles.noteBody}>{notes.workshopInstructions}</Text>
         </View>
       ) : null}
-      <View style={{ height: 30 }} />
-    </ScrollView>
+      <View style={{ height: 40 }} />
+    </View>
   );
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function VehicleDetailsScreen({ vehicle, onBack }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("specs");
+  const mainScrollRef = useRef<ScrollView>(null);
+
+  const handleTabChange = (id: TabId) => {
+    setActiveTab(id);
+  };
 
   return (
-    <SafeAreaView style={styles.root}>
+    <SafeAreaView style={styles.root} edges={["top"]}>
       <StatusBar barStyle="light-content" backgroundColor={COLORS.secondary} />
 
-      {/* ── Hero Header ── */}
-      <View style={styles.hero}>
-        {/* Back Button */}
-        <TouchableOpacity style={styles.backBtn} onPress={onBack}>
-          <Ionicons name="arrow-back" size={22} color="#fff" />
-        </TouchableOpacity>
+      {/* Main Single ScrollView containing Hero + Sticky Tab Bar + Active Tab Content */}
+      <ScrollView
+        ref={mainScrollRef}
+        style={styles.mainScrollView}
+        stickyHeaderIndices={[1]}
+        showsVerticalScrollIndicator={false}
+        bounces={true}
+      >
+        {/* ── Index 0: Hero Header (Car Image & Variant info) ── */}
+        <View style={styles.heroContainer}>
+          {/* Top Title Bar */}
+          <View style={styles.headerBand}>
+            <TouchableOpacity
+              style={styles.backBtn}
+              onPress={onBack}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <Ionicons name="arrow-back" size={20} color="#fff" />
+            </TouchableOpacity>
 
-        <Text style={styles.heroTitle}>
-          {vehicle.brand} {vehicle.model}
-        </Text>
+            <Text style={styles.heroTitle} numberOfLines={1}>
+              {vehicle.brand} {vehicle.model}
+            </Text>
 
-        {/* Car Image */}
-        <View style={styles.heroImageWrap}>
-          {vehicle.vehicleImage ? (
-            <Image
-              source={{ uri: vehicle.vehicleImage + "?w=400&auto=format" }}
-              style={styles.heroImage}
-              resizeMode="cover"
-            />
-          ) : (
-            <Ionicons name="car" size={80} color="rgba(255,255,255,0.3)" />
-          )}
+            <View style={{ width: 38 }} />
+          </View>
+
+          {/* Car Image Area */}
+          <View style={styles.heroImageWrap}>
+            {vehicle.vehicleImage ? (
+              <Image
+                source={{ uri: vehicle.vehicleImage + "?w=500&auto=format" }}
+                style={StyleSheet.absoluteFill}
+                resizeMode="cover"
+              />
+            ) : (
+              <Ionicons name="car" size={72} color="rgba(255,255,255,0.3)" />
+            )}
+          </View>
+
+          {/* Variant & Year */}
+          <View style={styles.heroMeta}>
+            <Text style={styles.heroVariant} numberOfLines={1}>
+              {vehicle.variant}
+            </Text>
+            <Text style={styles.heroYear}>
+              Year Model: {vehicle.year || vehicle.productionYear}
+            </Text>
+          </View>
         </View>
 
-        {/* Variant & Year */}
-        <View style={styles.heroMeta}>
-          <Text style={styles.heroVariant}>{vehicle.variant}</Text>
-          <Text style={styles.heroYear}>
-            Year Model: {vehicle.year || vehicle.productionYear}
-          </Text>
+        {/* ── Index 1: STICKY Tab Bar (Stays pinned at top when scrolling up on ANY tab) ── */}
+        <View style={styles.stickyTabBarWrap}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.tabBarContent}
+            bounces={false}
+          >
+            {TABS.map((tab) => {
+              const active = activeTab === tab.id;
+              return (
+                <TouchableOpacity
+                  key={tab.id}
+                  onPress={() => handleTabChange(tab.id)}
+                  style={styles.tabBtn}
+                  activeOpacity={0.7}
+                >
+                  <Ionicons
+                    name={tab.icon}
+                    size={16}
+                    color={active ? "#fff" : "rgba(255,255,255,0.5)"}
+                  />
+                  <Text style={[styles.tabLabel, active && styles.tabLabelActive]}>
+                    {tab.label}
+                  </Text>
+                  {active && <View style={styles.tabUnderline} />}
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
         </View>
 
-        {/* Tabs */}
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.tabBar}
-          contentContainerStyle={styles.tabBarContent}
-        >
-          {TABS.map((tab) => {
-            const active = activeTab === tab.id;
-            return (
-              <TouchableOpacity
-                key={tab.id}
-                onPress={() => setActiveTab(tab.id)}
-                style={[styles.tabBtn, active && styles.tabBtnActive]}
-              >
-                <Ionicons
-                  name={tab.icon}
-                  size={18}
-                  color={active ? "#fff" : "rgba(255,255,255,0.55)"}
-                />
-                <Text style={[styles.tabLabel, active && styles.tabLabelActive]}>
-                  {tab.label}
-                </Text>
-                {active && <View style={styles.tabUnderline} />}
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-      </View>
-
-      {/* ── Tab Content ── */}
-      <View style={styles.body}>
-        {activeTab === "specs" && <SpecsTab vehicle={vehicle} />}
-        {activeTab === "parts" && <PartsTab vehicle={vehicle} />}
-        {activeTab === "pms" && <PmsTab vehicle={vehicle} />}
-        {activeTab === "notes" && <NotesTab vehicle={vehicle} />}
-      </View>
+        {/* ── Index 2: Active Tab Content (Scrolls under sticky tab bar) ── */}
+        <View style={styles.body}>
+          {activeTab === "specs" && <SpecsContent vehicle={vehicle} />}
+          {activeTab === "parts" && <PartsContent vehicle={vehicle} />}
+          {activeTab === "pms" && <PmsContent vehicle={vehicle} />}
+          {activeTab === "notes" && <NotesContent vehicle={vehicle} />}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -425,18 +494,28 @@ export default function VehicleDetailsScreen({ vehicle, onBack }: Props) {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: COLORS.secondary,
+  },
+  mainScrollView: {
+    flex: 1,
     backgroundColor: COLORS.background,
   },
 
   // ── Hero ──
-  hero: {
+  heroContainer: {
     backgroundColor: COLORS.secondary,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight ?? 0 : 0,
-    paddingBottom: 0,
+    paddingBottom: 8,
+  },
+  headerBand: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 12,
+    paddingTop: Platform.OS === "android" ? 4 : 0,
+    paddingBottom: 6,
+    backgroundColor: COLORS.secondary,
+    justifyContent: "space-between",
   },
   backBtn: {
-    marginTop: 10,
-    marginLeft: 16,
     width: 38,
     height: 38,
     borderRadius: 19,
@@ -445,32 +524,31 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heroTitle: {
+    flex: 1,
     color: "#fff",
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: "700",
-    marginTop: 6,
-    marginLeft: 16,
+    textAlign: "center",
+    marginHorizontal: 6,
   },
   heroImageWrap: {
-    alignItems: "center",
-    marginTop: 8,
-    height: 100,
-    justifyContent: "center",
-    overflow: "hidden",
-  },
-  heroImage: {
     width: "100%",
     height: 100,
-    opacity: 0.55,
+    overflow: "hidden",
+    backgroundColor: COLORS.secondary,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 4,
   },
   heroMeta: {
-    marginLeft: 16,
-    marginTop: 8,
-    marginBottom: 4,
+    backgroundColor: COLORS.secondary,
+    paddingHorizontal: 16,
+    paddingTop: 6,
+    paddingBottom: 4,
   },
   heroVariant: {
     color: "rgba(255,255,255,0.75)",
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "500",
   },
   heroYear: {
@@ -479,25 +557,31 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
 
-  // ── Tab Bar ──
-  tabBar: {
-    marginTop: 8,
+  // ── Sticky Tab bar (Index 1) ──
+  stickyTabBarWrap: {
+    backgroundColor: COLORS.secondary,
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(255,255,255,0.1)",
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   tabBarContent: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 8,
   },
   tabBtn: {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 14,
     paddingVertical: 12,
-    marginRight: 4,
+    marginRight: 2,
     gap: 6,
     position: "relative",
   },
-  tabBtnActive: {},
   tabLabel: {
-    color: "rgba(255,255,255,0.55)",
+    color: "rgba(255,255,255,0.5)",
     fontSize: 13,
     fontWeight: "500",
   },
@@ -519,11 +603,11 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     backgroundColor: COLORS.background,
+    minHeight: 500,
   },
-  tabContent: {
-    flex: 1,
+  tabContentPad: {
     paddingHorizontal: 16,
-    paddingTop: 20,
+    paddingTop: 16,
   },
 
   // ── Section ──
@@ -540,7 +624,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderRadius: 16,
     padding: 6,
-    marginBottom: 20,
+    marginBottom: 18,
     borderWidth: 1,
     borderColor: COLORS.border,
   },
@@ -564,30 +648,12 @@ const styles = StyleSheet.create({
     gap: 10,
     flex: 1,
   },
-  specLabel: {
-    color: COLORS.gray,
-    fontSize: 14,
-  },
-  specValue: {
-    color: COLORS.text,
-    fontWeight: "600",
-    fontSize: 14,
-    textAlign: "right",
-    maxWidth: "50%",
-  },
+  specLabel: { color: COLORS.gray, fontSize: 14 },
+  specValue: { color: COLORS.text, fontWeight: "600", fontSize: 14, textAlign: "right", maxWidth: "50%" },
 
   // ── Parts ──
-  partLabel: {
-    color: COLORS.gray,
-    fontSize: 14,
-    flex: 1,
-  },
-  partValue: {
-    color: COLORS.text,
-    fontWeight: "600",
-    fontSize: 14,
-    fontFamily: Platform.OS === "ios" ? "Menlo" : "monospace",
-  },
+  partLabel: { color: COLORS.gray, fontSize: 14, flex: 1 },
+  partValue: { color: COLORS.text, fontWeight: "600", fontSize: 14, fontFamily: Platform.OS === "ios" ? "Menlo" : "monospace" },
 
   // ── PMS ──
   intervalHeader: {
@@ -598,47 +664,50 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     paddingBottom: 8,
   },
-  intervalHeaderTitle: {
-    fontSize: 15,
-    fontWeight: "700",
-    color: COLORS.text,
-  },
-  intervalScroll: {
-    maxHeight: 56,
-  },
-  intervalScrollContent: {
-    paddingHorizontal: 16,
-    gap: 8,
-    alignItems: "center",
-  },
+  intervalHeaderTitle: { fontSize: 15, fontWeight: "700", color: COLORS.text },
+  estCostText: { fontSize: 14, color: COLORS.gray, fontWeight: "500" },
+  estCostValue: { color: "#16A34A", fontWeight: "700" },
+
+  intervalScroll: { maxHeight: 52 },
+  intervalScrollContent: { paddingHorizontal: 16, gap: 8, alignItems: "center", paddingBottom: 6 },
   intervalChip: {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 14,
     paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 1.5,
+    borderRadius: 10,
+    borderWidth: 1,
     borderColor: COLORS.border,
     backgroundColor: COLORS.white,
   },
   intervalChipActive: {
-    backgroundColor: COLORS.primary,
-    borderColor: COLORS.primary,
+    backgroundColor: "#DBEAFE",
+    borderColor: "#93C5FD",
   },
-  intervalChipText: {
+  intervalChipText: { fontSize: 13, color: COLORS.text, fontWeight: "500" },
+  intervalChipTextActive: { color: "#1D4ED8", fontWeight: "700" },
+
+  intervalBanner: {
+    backgroundColor: "#FEFCE8",
+    borderWidth: 1,
+    borderColor: "#FEF08A",
+    borderRadius: 12,
+    marginHorizontal: 16,
+    marginTop: 8,
+    marginBottom: 4,
+    padding: 12,
+  },
+  intervalBannerText: {
+    color: "#713F12",
     fontSize: 13,
-    color: COLORS.text,
-    fontWeight: "500",
+    lineHeight: 18,
   },
-  intervalChipTextActive: {
-    color: "#fff",
-    fontWeight: "700",
-  },
+
   serviceCard: {
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     backgroundColor: COLORS.white,
-    borderRadius: 14,
+    borderRadius: 16,
     padding: 14,
     marginBottom: 10,
     borderWidth: 1,
@@ -646,94 +715,36 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   serviceIconWrap: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: "#EFF6FF",
     justifyContent: "center",
     alignItems: "center",
   },
-  serviceInfo: {
-    flex: 1,
-  },
-  serviceName: {
-    fontSize: 14,
-    fontWeight: "700",
-    color: COLORS.text,
-    marginBottom: 3,
-  },
-  serviceNote: {
-    fontSize: 12,
-    color: COLORS.gray,
-    lineHeight: 17,
-  },
-  serviceRight: {
-    alignItems: "flex-end",
-  },
-  replaceBadge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 20,
-  },
-  replaceBadgeYes: {
-    backgroundColor: "#FEF3C7",
-  },
-  replaceBadgeNo: {
-    backgroundColor: "#F0FDF4",
-  },
-  replaceBadgeText: {
-    fontSize: 11,
-    fontWeight: "700",
-  },
-  replaceBadgeTextYes: {
-    color: "#B45309",
-  },
-  replaceBadgeTextNo: {
-    color: "#15803D",
-  },
+  serviceInfo: { flex: 1 },
+  serviceName: { fontSize: 15, fontWeight: "700", color: COLORS.text, marginBottom: 3 },
+  serviceMeta: { fontSize: 12, color: COLORS.gray },
+  serviceRight: { alignItems: "flex-end", justifyContent: "center" },
+  costRow: { flexDirection: "row", alignItems: "center" },
+  costText: { fontSize: 14, fontWeight: "700", color: "#16A34A" },
+
+  replaceBadge: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 20 },
+  replaceBadgeYes: { backgroundColor: "#FEF3C7" },
+  replaceBadgeNo: { backgroundColor: "#F0FDF4" },
+  replaceBadgeText: { fontSize: 11, fontWeight: "700" },
+  replaceBadgeTextYes: { color: "#B45309" },
+  replaceBadgeTextNo: { color: "#15803D" },
 
   // ── Notes ──
-  noteCard: {
-    backgroundColor: "#FFFBEB",
-    borderRadius: 14,
-    padding: 16,
-    marginBottom: 14,
-    borderWidth: 1,
-    borderColor: "#FDE68A",
-  },
-  noteCardDanger: {
-    backgroundColor: "#FEF2F2",
-    borderColor: "#FECACA",
-  },
-  noteCardInfo: {
-    backgroundColor: "#EFF6FF",
-    borderColor: "#BFDBFE",
-  },
-  noteHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    marginBottom: 10,
-  },
-  noteTitle: {
-    fontSize: 15,
-    fontWeight: "700",
-  },
-  noteBody: {
-    fontSize: 14,
-    color: COLORS.text,
-    lineHeight: 22,
-  },
+  noteCard: { backgroundColor: "#FFFBEB", borderRadius: 14, padding: 16, marginBottom: 14, borderWidth: 1, borderColor: "#FDE68A" },
+  noteCardDanger: { backgroundColor: "#FEF2F2", borderColor: "#FECACA" },
+  noteCardInfo: { backgroundColor: "#EFF6FF", borderColor: "#BFDBFE" },
+  noteHeader: { flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 10 },
+  noteTitle: { fontSize: 15, fontWeight: "700" },
+  noteBody: { fontSize: 14, color: COLORS.text, lineHeight: 22 },
 
   // ── Empty ──
-  emptyState: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 12,
-  },
-  emptyText: {
-    color: COLORS.gray,
-    fontSize: 15,
-  },
+  emptyState: { paddingVertical: 60, justifyContent: "center", alignItems: "center", gap: 12 },
+  emptyText: { color: COLORS.gray, fontSize: 15 },
 });

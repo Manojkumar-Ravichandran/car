@@ -1,11 +1,15 @@
 export interface ServiceItem {
+  _id?: string;
   serviceName: string;
+  category?: string;
+  cost?: number;
   replacementRequired: "yes" | "no";
   notes: string;
 }
 
 export interface PmsSchedule {
   interval: number;
+  description?: string;
   serviceItems: ServiceItem[];
 }
 
