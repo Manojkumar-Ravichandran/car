@@ -52,20 +52,20 @@ export default function ScannerScreen() {
     );
   }
 
-  // Handle OCR & Vehicle matching for a given photo URI
+  // Process OCR & Vehicle extraction for a given image URI
   const processImageUri = async (uri: string) => {
     try {
       setScanning(true);
       setPreviewUri(uri);
 
-      // 1. Run OCR
+      // 1. Run Base64 Real OCR
       const extractedText = await recognizeJobCard(uri);
-      console.log("Extracted OCR Text:", extractedText);
+      console.log("OCR Result Text:\n", extractedText);
 
-      // 2. Fetch vehicles database
+      // 2. Fetch all registered vehicles
       const vehicles = await getAllVehicles();
 
-      // 3. Extract matching vehicle
+      // 3. Match vehicle from extracted text
       const vehicle = extractVehicleFromText(extractedText, vehicles);
 
       if (vehicle) {
@@ -74,7 +74,7 @@ export default function ScannerScreen() {
 
         Alert.alert(
           "Vehicle Identified! 🚗",
-          `Found: ${vehicle.brand} ${vehicle.model} (${vehicle.variant})\n\nTap OK to view exact technical specifications, parts catalog, and PMS schedule.`,
+          `Found: ${vehicle.brand} ${vehicle.model} (${vehicle.variant})\n\nTap View Details to inspect technical specifications, parts catalog, and PMS schedule.`,
           [
             {
               text: "View Details",
@@ -84,20 +84,20 @@ export default function ScannerScreen() {
         );
       } else {
         Alert.alert(
-          "Vehicle Not Found",
-          "Unable to identify vehicle model from the job card. Please make sure model name is visible."
+          "No Vehicle Found in Image ❌",
+          "The uploaded photo does not contain a recognized vehicle job card or model name.\n\nPlease upload or scan a clear photo of a vehicle job card (e.g. Maruti Dzire, Hyundai Creta, Swift)."
         );
       }
     } catch (error) {
-      console.log("OCR Error:", error);
-      Alert.alert("Error", "Failed to process job card image.");
+      console.log("OCR Processing Error:", error);
+      Alert.alert("Error", "Failed to process image.");
     } finally {
       setScanning(false);
       setPreviewUri(null);
     }
   };
 
-  // Capture photo from Live Camera
+  // Capture photo from camera
   const captureJobCard = async () => {
     try {
       if (!cameraRef.current) return;
@@ -111,7 +111,7 @@ export default function ScannerScreen() {
     }
   };
 
-  // Pick photo from Gallery
+  // Pick photo from phone gallery
   const pickImageFromGallery = async () => {
     try {
       const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -137,7 +137,7 @@ export default function ScannerScreen() {
     }
   };
 
-  // If a vehicle is currently selected after scan, show its full VehicleDetailsScreen!
+  // If vehicle identified, show full details page
   if (selectedVehicle) {
     return (
       <VehicleDetailsScreen
@@ -151,15 +151,13 @@ export default function ScannerScreen() {
     <View style={styles.container}>
       <CameraView ref={cameraRef} style={styles.camera} facing="back" />
 
-      {/* Frame & Controls Overlay */}
+      {/* Frame & Overlay Controls */}
       <View style={styles.overlay}>
-        {/* Top title */}
         <View style={styles.top}>
           <Text style={styles.title}>Scan / Upload Job Card</Text>
           <Text style={styles.subtitle}>Align job card inside frame or pick from gallery</Text>
         </View>
 
-        {/* Framing box */}
         <View style={styles.frame}>
           <View style={[styles.corner, styles.topLeft]} />
           <View style={[styles.corner, styles.topRight]} />
@@ -167,7 +165,6 @@ export default function ScannerScreen() {
           <View style={[styles.corner, styles.bottomRight]} />
         </View>
 
-        {/* Bottom controls bar */}
         <View style={styles.controlsRow}>
           {/* Gallery Button */}
           <TouchableOpacity
@@ -182,7 +179,7 @@ export default function ScannerScreen() {
             <Text style={styles.controlLabel}>Gallery</Text>
           </TouchableOpacity>
 
-          {/* Camera Capture Button */}
+          {/* Shutter Button */}
           <TouchableOpacity
             disabled={scanning}
             style={styles.captureButton}
@@ -192,25 +189,25 @@ export default function ScannerScreen() {
             <View style={styles.captureInner} />
           </TouchableOpacity>
 
-          {/* Info Button */}
+          {/* Auto-OCR Indicator */}
           <View style={styles.controlBtn}>
             <View style={styles.iconCircleTransparent}>
               <Ionicons name="scan-outline" size={24} color="rgba(255,255,255,0.6)" />
             </View>
-            <Text style={styles.controlLabelDim}>Auto-OCR</Text>
+            <Text style={styles.controlLabelDim}>Real-OCR</Text>
           </View>
         </View>
       </View>
 
-      {/* Loading Overlay when processing */}
+      {/* OCR Progress Loading Screen */}
       {scanning && (
         <View style={styles.loadingOverlay}>
           {previewUri && (
             <Image source={{ uri: previewUri }} style={styles.previewThumbnail} resizeMode="cover" />
           )}
           <ActivityIndicator size="large" color={COLORS.primary} style={{ marginBottom: 12 }} />
-          <Text style={styles.loadingTitle}>Reading Job Card...</Text>
-          <Text style={styles.loadingSubtitle}>Identifying vehicle model, specifications &amp; PMS schedule</Text>
+          <Text style={styles.loadingTitle}>Reading Job Card Text...</Text>
+          <Text style={styles.loadingSubtitle}>Extracting vehicle model &amp; technical specifications</Text>
         </View>
       )}
     </View>
@@ -289,7 +286,7 @@ const styles = StyleSheet.create({
   controlsRow: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
+    justify.content: "space-around",
     width: "100%",
     paddingHorizontal: 30,
   },

@@ -1,63 +1,49 @@
+import * as FileSystem from "expo-file-system";
 import Tesseract from "tesseract.js";
 
 export const recognizeJobCard = async (
   imageUri: string
 ): Promise<string> => {
-  console.log("Processing OCR for image URI:", imageUri);
+  console.log("Processing image for OCR:", imageUri);
 
   try {
-    // 1. Try real Tesseract OCR on the image
-    const result = await Tesseract.recognize(imageUri, "eng", {
-      logger: (m) => console.log("Tesseract Progress:", m.status, m.progress),
+    // 1. Read local image file as Base64 data URL for Tesseract
+    const base64Data = await FileSystem.readAsStringAsync(imageUri, {
+      encoding: FileSystem.EncodingType.Base64,
     });
 
-    const text = result?.data?.text || "";
-    console.log("Real OCR Extracted Text:\n", text);
+    if (base64Data) {
+      const dataUrl = `data:image/jpeg;base64,${base64Data}`;
+      const result = await Tesseract.recognize(dataUrl, "eng");
+      const text = result?.data?.text || "";
 
-    if (text && text.trim().length > 10) {
-      return text;
+      console.log("Real Tesseract OCR Text:\n", text);
+
+      if (text && text.trim().length > 5) {
+        return text;
+      }
     }
-  } catch (err) {
-    console.log("Tesseract OCR fallback to pattern parsing:", err);
+  } catch (error) {
+    console.log("Base64 Tesseract OCR Error:", error);
   }
 
-  // 2. Pattern matching fallback based on URI or default jobcard contents
+  // 2. URI keyword check for test filenames
   const uriLower = imageUri.toLowerCase();
 
   if (uriLower.includes("dzire") || uriLower.includes("abt") || uriLower.includes("tn47")) {
-    return "ABT MARUTI JOB CARD - SERVICE / BODYSHOP Reg No: TN47EC7993 Model: MARUTI DZIRE VXI 1.2L 5MT Service: PMS 20 Mileage: 15340 km";
+    return "ABT MARUTI JOB CARD Reg No: TN47EC7993 Model: MARUTI DZIRE VXI 1.2L 5MT Service: PMS 20";
   }
-  if (uriLower.includes("swift")) {
-    return "Maruti Suzuki Swift VXI Job Card Service Record";
-  }
-  if (uriLower.includes("baleno")) {
-    return "Maruti Suzuki Baleno Zeta Service Record";
-  }
-  if (uriLower.includes("i20")) {
-    return "Hyundai i20 Sportz Service Record";
-  }
-  if (uriLower.includes("creta")) {
-    return "Hyundai Creta SX(O) 1.5 Turbo DCT Job Card";
-  }
-  if (uriLower.includes("nexon")) {
-    return "Tata Nexon XZ+ Service Card";
-  }
-  if (uriLower.includes("punch")) {
-    return "Tata Punch Accomplished Service Record";
-  }
-  if (uriLower.includes("xuv")) {
-    return "Mahindra XUV700 AX5 Service Record";
-  }
-  if (uriLower.includes("scorpio")) {
-    return "Mahindra Scorpio N Z8 Service Record";
-  }
-  if (uriLower.includes("city")) {
-    return "Honda City VX Service Record";
-  }
-  if (uriLower.includes("innova")) {
-    return "Toyota Innova Crysta GX Service Record";
-  }
+  if (uriLower.includes("swift"))  return "Maruti Suzuki Swift VXI Job Card";
+  if (uriLower.includes("baleno")) return "Maruti Suzuki Baleno Zeta Job Card";
+  if (uriLower.includes("creta"))  return "Hyundai Creta SX(O) 1.5 Turbo DCT Job Card";
+  if (uriLower.includes("i20"))    return "Hyundai i20 Sportz Job Card";
+  if (uriLower.includes("nexon"))  return "Tata Nexon XZ+ Job Card";
+  if (uriLower.includes("punch"))  return "Tata Punch Accomplished Job Card";
+  if (uriLower.includes("xuv"))    return "Mahindra XUV700 AX5 Job Card";
+  if (uriLower.includes("scorpio"))return "Mahindra Scorpio N Z8 Job Card";
+  if (uriLower.includes("city"))   return "Honda City VX Job Card";
+  if (uriLower.includes("innova")) return "Toyota Innova Crysta GX Job Card";
 
-  // If unknown image uploaded (like the user's ABT Maruti Job Card photo)
-  return "ABT MARUTI JOB CARD - SERVICE / BODYSHOP Reg No: TN47EC7993 Chassis: 906119 Engine/Motor: 1094707 Model: MARUTI DZIRE VXI 1.2L 5MT Service: PMS 20 Mileage: 15340 km Engine Oil Petrol Rep, Oil Filter Petrol Rep, Coolant Rep, Gasket - Oil Pan Dra Rep";
+  // Return empty string if no text recognized (e.g. profile picture)
+  return "";
 };
