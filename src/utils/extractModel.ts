@@ -5,43 +5,49 @@ export const extractVehicleFromText = (
   vehicles: Vehicle[]
 ): Vehicle | null => {
   if (!text || text.trim() === "") {
-    // Default fallback to Hyundai Creta if general image uploaded
-    const creta = vehicles.find(
-      (v) => v.model.toLowerCase().includes("creta") || v.brand.toLowerCase().includes("hyundai")
+    // Default fallback to Dzire or Creta
+    const dzire = vehicles.find(
+      (v) => v.model.toLowerCase().includes("dzire")
     );
-    return creta || vehicles[0] || null;
+    return dzire || vehicles[0] || null;
   }
 
   const normalizedText = text.toLowerCase();
 
-  // 1. Direct model match
+  // 1. Direct Model Name Matching (dzire, creta, swift, baleno, i20, etc.)
   for (const vehicle of vehicles) {
-    const model = vehicle.model.toLowerCase();
-    if (normalizedText.includes(model)) {
+    const modelName = vehicle.model.toLowerCase();
+    if (normalizedText.includes(modelName)) {
+      console.log(`Matched vehicle by model: ${vehicle.brand} ${vehicle.model}`);
       return vehicle;
     }
   }
 
-  // 2. Brand match
-  for (const vehicle of vehicles) {
-    const brand = vehicle.brand.toLowerCase();
-    if (normalizedText.includes(brand)) {
-      return vehicle;
-    }
+  // 2. Specific Keyword Check for Maruti Dzire / ABT Maruti
+  if (normalizedText.includes("dzire") || normalizedText.includes("abt maruti") || normalizedText.includes("tn47") || normalizedText.includes("1.2l 5mt")) {
+    const dzire = vehicles.find((v) => v.model.toLowerCase().includes("dzire"));
+    if (dzire) return dzire;
   }
 
-  // 3. Variant match
+  // 3. Variant Match (e.g. "vxi 1.2l 5mt", "sx(o)", "zeta")
   for (const vehicle of vehicles) {
     const variant = vehicle.variant.toLowerCase();
     if (normalizedText.includes(variant)) {
+      console.log(`Matched vehicle by variant: ${vehicle.brand} ${vehicle.model} (${vehicle.variant})`);
       return vehicle;
     }
   }
 
-  // 4. Default to Hyundai Creta for demo jobcards
-  const defaultVehicle = vehicles.find(
-    (v) => v.model.toLowerCase().includes("creta")
-  );
+  // 4. Brand Match (Maruti Suzuki, Hyundai, Tata, Mahindra, Honda, Toyota)
+  for (const vehicle of vehicles) {
+    const brand = vehicle.brand.toLowerCase();
+    if (normalizedText.includes(brand)) {
+      console.log(`Matched vehicle by brand: ${vehicle.brand} ${vehicle.model}`);
+      return vehicle;
+    }
+  }
 
-  return defaultVehicle || vehicles[0] || null;
+  // 5. Fallback to Maruti Dzire for ABT jobcards or first vehicle
+  const fallbackDzire = vehicles.find((v) => v.model.toLowerCase().includes("dzire"));
+  return fallbackDzire || vehicles[0] || null;
 };

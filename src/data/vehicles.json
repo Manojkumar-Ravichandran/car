@@ -1,6 +1,80 @@
 [
   {
     "id": "1",
+    "vehicleImage": "https://images.unsplash.com/photo-1590362891991-f776e747a588",
+    "brand": "Maruti Suzuki",
+    "model": "Dzire",
+    "variant": "VXI 1.2L 5MT",
+    "fuelType": "Petrol",
+    "engine": "1.2L DualJet K12N",
+    "engineCode": "K12N",
+    "engineCapacity": "1197 cc",
+    "transmission": "5MT Manual",
+    "driveType": "FWD",
+    "vehicleSegment": "Compact Sedan",
+    "country": "India",
+    "year": "2024",
+    "productionYear": 2024,
+    "serviceInterval": "10000 km / 12 months",
+    "engineOil": "0W-20",
+    "oilCapacity": "3.1 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "3.1 L",
+      "engineOilGrade": "0W-16 / 0W-20",
+      "coolantCapacity": "4.5 L",
+      "brakeFluidType": "DOT 4",
+      "batterySpecification": "12V 38Ah",
+      "tyrePressureFront": "32 PSI",
+      "tyrePressureRear": "32 PSI",
+      "sparkPlugGap": "1.0 mm"
+    },
+    "filtersAndParts": {
+      "oilFilter": "16510M68K00",
+      "airFilter": "13780M74P00",
+      "cabinFilter": "95860M74P00",
+      "drainPlugPartNumber": "09247-12008",
+      "drainWasherPartNumber": "09168-12017"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 10,
+        "description": "First annual maintenance service.",
+        "serviceItems": [
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 1515, "replacementRequired": "yes", "notes": "Replace engine oil 0W-20" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 350, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brake pads and shoes" }
+        ]
+      },
+      {
+        "interval": 20,
+        "description": "ABT MARUTI Job Card (PMS 20 - 20,000 km). Second major service.",
+        "serviceItems": [
+          { "serviceName": "Engine Oil Petrol", "category": "Lubrication", "cost": 1515, "replacementRequired": "yes", "notes": "Replace engine oil with 0W-20 grade" },
+          { "serviceName": "Oil Filter Petrol", "category": "Filters", "cost": 350, "replacementRequired": "yes", "notes": "Replace oil filter element" },
+          { "serviceName": "Engine Coolant Replacement", "category": "Cooling", "cost": 850, "replacementRequired": "yes", "notes": "Replace coolant fluid" },
+          { "serviceName": "Gasket - Oil Pan Drain Plug", "category": "Drain Parts", "cost": 85, "replacementRequired": "yes", "notes": "Replace drain plug washer gasket" },
+          { "serviceName": "AC Cabin Filter", "category": "HVAC", "cost": 0, "replacementRequired": "no", "notes": "Checked - AC filter clean / not replaced" },
+          { "serviceName": "General Service Labor & Inspection", "category": "Inspections", "cost": 2900, "replacementRequired": "no", "notes": "Full vehicle service checkup & alignment" }
+        ]
+      },
+      {
+        "interval": 30,
+        "description": "Third annual maintenance service.",
+        "serviceItems": [
+          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 1515, "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 350, "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter Replacement", "category": "Filters", "cost": 420, "replacementRequired": "yes", "notes": "Replace air filter" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "ABT MARUTI Service Center Record (Reg: TN47EC7993). Use 0W-16 or 0W-20 synthetic engine oil.",
+      "commonProblems": "Check clutch free play, brake pad wear, and AC filter condition.",
+      "workshopInstructions": "Perform wheel alignment and balancing at PMS 20. Check oil pan drain plug gasket after oil change."
+    }
+  },
+  {
+    "id": "2",
     "brand": "Maruti Suzuki",
     "model": "Swift",
     "variant": "VXI",
@@ -50,7 +124,7 @@
     }
   },
   {
-    "id": "2",
+    "id": "3",
     "brand": "Maruti Suzuki",
     "model": "Baleno",
     "variant": "Zeta",
@@ -98,7 +172,7 @@
     }
   },
   {
-    "id": "3",
+    "id": "4",
     "brand": "Hyundai",
     "model": "i20",
     "variant": "Sportz",
@@ -147,7 +221,7 @@
     }
   },
   {
-    "id": "4",
+    "id": "5",
     "vehicleImage": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2",
     "brand": "Hyundai",
     "model": "Creta",
@@ -213,99 +287,6 @@
           { "serviceName": "Air Filter Inspection", "category": "Filters", "cost": 0, "replacementRequired": "no", "notes": "Clean or replace if required" },
           { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brake pads and discs" }
         ]
-      },
-      {
-        "interval": 30,
-        "description": "Third annual maintenance.",
-        "serviceItems": [
-          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter", "category": "Filters", "cost": 850, "replacementRequired": "yes", "notes": "Replace air filter" },
-          { "serviceName": "Brake Fluid Inspection", "category": "Fluids", "cost": 0, "replacementRequired": "no", "notes": "Check brake fluid condition" },
-          { "serviceName": "Battery Inspection", "category": "Electrical", "cost": 0, "replacementRequired": "no", "notes": "Check battery voltage and terminals" }
-        ]
-      },
-      {
-        "interval": 40,
-        "description": "Fourth annual major service.",
-        "serviceItems": [
-          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Cabin Filter", "category": "HVAC", "cost": 650, "replacementRequired": "yes", "notes": "Replace cabin filter" },
-          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brake system" },
-          { "serviceName": "Suspension Inspection", "category": "Suspension", "cost": 0, "replacementRequired": "no", "notes": "Inspect suspension components" }
-        ]
-      },
-      {
-        "interval": 50,
-        "description": "Fifth annual maintenance.",
-        "serviceItems": [
-          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter", "category": "Filters", "cost": 850, "replacementRequired": "yes", "notes": "Replace air filter" },
-          { "serviceName": "Spark Plug Inspection", "category": "Ignition", "cost": 0, "replacementRequired": "no", "notes": "Inspect spark plug condition and gap" },
-          { "serviceName": "Drive Belt Inspection", "category": "Engine", "cost": 0, "replacementRequired": "no", "notes": "Inspect drive belt for cracks and wear" }
-        ]
-      },
-      {
-        "interval": 60,
-        "description": "Sixth annual major service.",
-        "serviceItems": [
-          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Brake Fluid", "category": "Fluids", "cost": 1200, "replacementRequired": "yes", "notes": "Replace brake fluid if due" },
-          { "serviceName": "Coolant Inspection", "category": "Cooling", "cost": 0, "replacementRequired": "no", "notes": "Check coolant level and condition" },
-          { "serviceName": "Battery Inspection", "category": "Electrical", "cost": 0, "replacementRequired": "no", "notes": "Check battery performance" }
-        ]
-      },
-      {
-        "interval": 70,
-        "description": "Seventh annual maintenance.",
-        "serviceItems": [
-          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter", "category": "Filters", "cost": 850, "replacementRequired": "yes", "notes": "Replace air filter" },
-          { "serviceName": "Cabin Filter", "category": "HVAC", "cost": 650, "replacementRequired": "yes", "notes": "Replace cabin filter" },
-          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect brake pads and discs" }
-        ]
-      },
-      {
-        "interval": 80,
-        "description": "Eighth annual major service.",
-        "serviceItems": [
-          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Transmission Fluid Inspection", "category": "Transmission", "cost": 0, "replacementRequired": "no", "notes": "Inspect DCT transmission fluid" },
-          { "serviceName": "Drive Belt", "category": "Engine", "cost": 1850, "replacementRequired": "yes", "notes": "Replace drive belt if required" },
-          { "serviceName": "Water Pump Inspection", "category": "Cooling", "cost": 0, "replacementRequired": "no", "notes": "Check water pump for leaks and noise" }
-        ]
-      },
-      {
-        "interval": 90,
-        "description": "Ninth annual maintenance.",
-        "serviceItems": [
-          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter", "category": "Filters", "cost": 850, "replacementRequired": "yes", "notes": "Replace air filter" },
-          { "serviceName": "Spark Plug", "category": "Ignition", "cost": 2400, "replacementRequired": "yes", "notes": "Replace spark plugs" },
-          { "serviceName": "Brake Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Inspect entire braking system" }
-        ]
-      },
-      {
-        "interval": 100,
-        "description": "Tenth annual comprehensive service.",
-        "serviceItems": [
-          { "serviceName": "Engine Oil Replacement", "category": "Lubrication", "cost": 2800, "replacementRequired": "yes", "notes": "Replace engine oil" },
-          { "serviceName": "Oil Filter Replacement", "category": "Filters", "cost": 450, "replacementRequired": "yes", "notes": "Replace oil filter" },
-          { "serviceName": "Air Filter", "category": "Filters", "cost": 850, "replacementRequired": "yes", "notes": "Replace air filter" },
-          { "serviceName": "Cabin Filter", "category": "HVAC", "cost": 650, "replacementRequired": "yes", "notes": "Replace cabin filter" },
-          { "serviceName": "Coolant Replacement", "category": "Cooling", "cost": 1600, "replacementRequired": "yes", "notes": "Replace coolant according to manufacturer schedule" },
-          { "serviceName": "Brake Fluid", "category": "Fluids", "cost": 1200, "replacementRequired": "yes", "notes": "Replace brake fluid" },
-          { "serviceName": "Spark Plug", "category": "Ignition", "cost": 2400, "replacementRequired": "yes", "notes": "Replace spark plugs" },
-          { "serviceName": "Drive Belt", "category": "Engine", "cost": 1850, "replacementRequired": "yes", "notes": "Replace drive belt" },
-          { "serviceName": "Battery Inspection", "category": "Electrical", "cost": 0, "replacementRequired": "no", "notes": "Test battery health and replace if required" },
-          { "serviceName": "Complete Vehicle Inspection", "category": "Inspections", "cost": 0, "replacementRequired": "no", "notes": "Perform complete inspection of vehicle" }
-        ]
       }
     ],
     "additionalNotes": {
@@ -315,7 +296,7 @@
     }
   },
   {
-    "id": "5",
+    "id": "6",
     "brand": "Tata",
     "model": "Nexon",
     "variant": "XZ+",
@@ -362,7 +343,7 @@
     }
   },
   {
-    "id": "6",
+    "id": "7",
     "brand": "Tata",
     "model": "Punch",
     "variant": "Accomplished",
@@ -409,7 +390,7 @@
     }
   },
   {
-    "id": "7",
+    "id": "8",
     "brand": "Mahindra",
     "model": "XUV700",
     "variant": "AX5",
@@ -458,7 +439,7 @@
     }
   },
   {
-    "id": "8",
+    "id": "9",
     "brand": "Mahindra",
     "model": "Scorpio N",
     "variant": "Z8",
@@ -507,7 +488,7 @@
     }
   },
   {
-    "id": "9",
+    "id": "10",
     "brand": "Honda",
     "model": "City",
     "variant": "VX",
@@ -559,7 +540,7 @@
     }
   },
   {
-    "id": "10",
+    "id": "11",
     "brand": "Toyota",
     "model": "Innova Crysta",
     "variant": "GX",
