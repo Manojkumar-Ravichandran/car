@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   controlsRow: {
     flexDirection: "row",
     alignItems: "center",
-    justify.content: "space-around",
+    justifyContent: "space-around",
     width: "100%",
     paddingHorizontal: 30,
   },
