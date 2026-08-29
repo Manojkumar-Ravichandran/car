@@ -1,0 +1,590 @@
+[
+  {
+    "id": "1",
+    "brand": "Maruti Suzuki",
+    "model": "Swift",
+    "variant": "VXI",
+    "fuelType": "Petrol",
+    "engine": "1.2L K-Series",
+    "engineCode": "K12C",
+    "engineCapacity": "1197 cc",
+    "transmission": "Manual",
+    "driveType": "FWD",
+    "vehicleSegment": "Hatchback",
+    "country": "India",
+    "year": "2023",
+    "serviceInterval": "10000 km / 12 months",
+    "engineOil": "0W-20",
+    "oilCapacity": "3.2 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "3.2 L",
+      "engineOilGrade": "0W-20",
+      "coolantCapacity": "5.0 L",
+      "brakeFluidType": "DOT 4",
+      "batterySpecification": "12V 45Ah",
+      "tyrePressureFront": "32 PSI",
+      "tyrePressureRear": "32 PSI",
+      "sparkPlugGap": "1.0 mm"
+    },
+    "filtersAndParts": {
+      "oilFilter": "16510-61AV0",
+      "airFilter": "13780-84M00",
+      "cabinFilter": "95860-M68K00"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 10,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace with 0W-20 grade" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Tyre Pressure", "replacementRequired": "no", "notes": "Check and adjust" },
+          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brake system" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "Use manufacturer-recommended 0W-20 engine oil.",
+      "commonProblems": "Check for suspension noise and brake pad wear.",
+      "workshopInstructions": "Reset service reminder after completing PMS."
+    }
+  },
+  {
+    "id": "2",
+    "brand": "Maruti Suzuki",
+    "model": "Baleno",
+    "variant": "Zeta",
+    "fuelType": "Petrol",
+    "engine": "1.2L K-Series",
+    "engineCode": "K12C",
+    "engineCapacity": "1197 cc",
+    "transmission": "Manual",
+    "driveType": "FWD",
+    "vehicleSegment": "Hatchback",
+    "country": "India",
+    "year": "2023",
+    "serviceInterval": "10000 km / 12 months",
+    "engineOil": "0W-20",
+    "oilCapacity": "3.2 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "3.2 L",
+      "engineOilGrade": "0W-20",
+      "coolantCapacity": "5.2 L",
+      "brakeFluidType": "DOT 4",
+      "batterySpecification": "12V 45Ah",
+      "tyrePressureFront": "32 PSI",
+      "tyrePressureRear": "32 PSI"
+    },
+    "filtersAndParts": {
+      "oilFilter": "16510-61AV0",
+      "airFilter": "13780-84M00",
+      "cabinFilter": "95860-M68K00"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 10,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "General Inspection", "replacementRequired": "no", "notes": "Full vehicle inspection" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "Use genuine Maruti parts for best performance.",
+      "commonProblems": "Check AC compressor and clutch wear.",
+      "workshopInstructions": "Reset service reminder after PMS."
+    }
+  },
+  {
+    "id": "3",
+    "brand": "Hyundai",
+    "model": "i20",
+    "variant": "Sportz",
+    "fuelType": "Petrol",
+    "engine": "1.2L Kappa",
+    "engineCode": "G4LA",
+    "engineCapacity": "1197 cc",
+    "transmission": "Manual",
+    "driveType": "FWD",
+    "vehicleSegment": "Hatchback",
+    "country": "India",
+    "year": "2023",
+    "serviceInterval": "10000 km / 12 months",
+    "engineOil": "5W-30",
+    "oilCapacity": "3.6 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "3.6 L",
+      "engineOilGrade": "5W-30",
+      "coolantCapacity": "5.5 L",
+      "brakeFluidType": "DOT 4",
+      "batterySpecification": "12V 45Ah",
+      "tyrePressureFront": "32 PSI",
+      "tyrePressureRear": "32 PSI",
+      "sparkPlugGap": "1.0 mm"
+    },
+    "filtersAndParts": {
+      "oilFilter": "26300-35505",
+      "airFilter": "28113-1J100",
+      "cabinFilter": "97133-1J000"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 10,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brakes" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "Use 5W-30 fully synthetic oil.",
+      "commonProblems": "Watch for clutch wear and suspension noise.",
+      "workshopInstructions": "Perform diagnostic scan before major service."
+    }
+  },
+  {
+    "id": "4",
+    "vehicleImage": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2",
+    "brand": "Hyundai",
+    "model": "Creta",
+    "variant": "SX(O) 1.5 Turbo DCT",
+    "fuelType": "Petrol",
+    "engine": "1.5L Turbo G4LD",
+    "engineCode": "G4LD",
+    "engineCapacity": "1482 cc",
+    "transmission": "DCT",
+    "driveType": "FWD",
+    "vehicleSegment": "SUV",
+    "country": "India",
+    "year": "2025",
+    "productionYear": 2025,
+    "serviceInterval": "10000 km / 12 months",
+    "engineOil": "5W-30",
+    "oilCapacity": "4.0 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "4.0 L",
+      "engineOilGrade": "5W-30",
+      "gearOilCapacity": "1.7 L",
+      "gearOilGrade": "DCT Fluid",
+      "coolantCapacity": "6.2 L",
+      "brakeFluidType": "DOT 4",
+      "powerSteeringOil": "EPS - No Oil",
+      "batterySpecification": "12V 60Ah",
+      "tyrePressureFront": "33 PSI",
+      "tyrePressureRear": "33 PSI",
+      "sparkPlugGap": "0.8 mm"
+    },
+    "filtersAndParts": {
+      "oilFilter": "26300-35505",
+      "airFilter": "28113-L1100",
+      "cabinFilter": "97133-L1000",
+      "fuelFilter": "31112-C9000",
+      "driveBeltNumber": "25212-2B000",
+      "timingBeltNumber": "",
+      "timingChain": "yes",
+      "waterPumpPartNumber": "25100-2B700",
+      "drainPlugPartNumber": "21513-23001",
+      "drainWasherPartNumber": "21513-23001"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 10,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil with recommended grade" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect front and rear brake system" },
+          { "serviceName": "Tyre Pressure", "replacementRequired": "no", "notes": "Check and adjust tyre pressure" },
+          { "serviceName": "General Inspection", "replacementRequired": "no", "notes": "Perform complete vehicle inspection" }
+        ]
+      },
+      {
+        "interval": 20,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter Inspection", "replacementRequired": "no", "notes": "Clean or replace if required" },
+          { "serviceName": "Cabin Filter", "replacementRequired": "yes", "notes": "Replace cabin filter" },
+          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brake pads and discs" }
+        ]
+      },
+      {
+        "interval": 30,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter", "replacementRequired": "yes", "notes": "Replace air filter" },
+          { "serviceName": "Brake Fluid Inspection", "replacementRequired": "no", "notes": "Check brake fluid condition" },
+          { "serviceName": "Battery Inspection", "replacementRequired": "no", "notes": "Check battery voltage and terminals" }
+        ]
+      },
+      {
+        "interval": 40,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Cabin Filter", "replacementRequired": "yes", "notes": "Replace cabin filter" },
+          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brake system" },
+          { "serviceName": "Suspension Inspection", "replacementRequired": "no", "notes": "Inspect suspension components" }
+        ]
+      },
+      {
+        "interval": 50,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter", "replacementRequired": "yes", "notes": "Replace air filter" },
+          { "serviceName": "Spark Plug Inspection", "replacementRequired": "no", "notes": "Inspect spark plug condition and gap" },
+          { "serviceName": "Drive Belt Inspection", "replacementRequired": "no", "notes": "Inspect drive belt for cracks and wear" }
+        ]
+      },
+      {
+        "interval": 60,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Brake Fluid", "replacementRequired": "yes", "notes": "Replace brake fluid if due" },
+          { "serviceName": "Coolant Inspection", "replacementRequired": "no", "notes": "Check coolant level and condition" },
+          { "serviceName": "Battery Inspection", "replacementRequired": "no", "notes": "Check battery performance" }
+        ]
+      },
+      {
+        "interval": 70,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter", "replacementRequired": "yes", "notes": "Replace air filter" },
+          { "serviceName": "Cabin Filter", "replacementRequired": "yes", "notes": "Replace cabin filter" },
+          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brake pads and discs" }
+        ]
+      },
+      {
+        "interval": 80,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Transmission Fluid Inspection", "replacementRequired": "no", "notes": "Inspect DCT transmission fluid" },
+          { "serviceName": "Drive Belt", "replacementRequired": "yes", "notes": "Replace drive belt if required" },
+          { "serviceName": "Water Pump Inspection", "replacementRequired": "no", "notes": "Check water pump for leaks and noise" }
+        ]
+      },
+      {
+        "interval": 90,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter", "replacementRequired": "yes", "notes": "Replace air filter" },
+          { "serviceName": "Spark Plug", "replacementRequired": "yes", "notes": "Replace spark plugs" },
+          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect entire braking system" }
+        ]
+      },
+      {
+        "interval": 100,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Air Filter", "replacementRequired": "yes", "notes": "Replace air filter" },
+          { "serviceName": "Cabin Filter", "replacementRequired": "yes", "notes": "Replace cabin filter" },
+          { "serviceName": "Coolant", "replacementRequired": "yes", "notes": "Replace coolant according to manufacturer schedule" },
+          { "serviceName": "Brake Fluid", "replacementRequired": "yes", "notes": "Replace brake fluid" },
+          { "serviceName": "Spark Plug", "replacementRequired": "yes", "notes": "Replace spark plugs" },
+          { "serviceName": "Drive Belt", "replacementRequired": "yes", "notes": "Replace drive belt" },
+          { "serviceName": "Battery", "replacementRequired": "no", "notes": "Test battery health and replace if required" },
+          { "serviceName": "Complete Vehicle Inspection", "replacementRequired": "no", "notes": "Perform complete inspection of vehicle" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "Use manufacturer-recommended lubricants and genuine or approved replacement parts.",
+      "commonProblems": "Check for battery drain, brake pad wear, suspension noise, AC performance issues and DCT transmission behaviour.",
+      "workshopInstructions": "Perform diagnostic scan before major service. Reset service reminder after completing PMS. Record replaced parts and service details."
+    }
+  },
+  {
+    "id": "5",
+    "brand": "Tata",
+    "model": "Nexon",
+    "variant": "XZ+",
+    "fuelType": "Petrol",
+    "engine": "1.2L Turbo",
+    "engineCode": "Revotron",
+    "engineCapacity": "1199 cc",
+    "transmission": "Manual",
+    "driveType": "FWD",
+    "vehicleSegment": "SUV",
+    "country": "India",
+    "year": "2023",
+    "serviceInterval": "15000 km / 12 months",
+    "engineOil": "5W-30",
+    "oilCapacity": "3.5 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "3.5 L",
+      "engineOilGrade": "5W-30",
+      "coolantCapacity": "5.8 L",
+      "brakeFluidType": "DOT 4",
+      "batterySpecification": "12V 50Ah",
+      "tyrePressureFront": "35 PSI",
+      "tyrePressureRear": "35 PSI"
+    },
+    "filtersAndParts": {
+      "oilFilter": "278012-0070",
+      "airFilter": "278002-0031"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 15,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "General Inspection", "replacementRequired": "no", "notes": "Full vehicle inspection" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "Use 5W-30 synthetic oil. Tata recommends 15,000 km service intervals.",
+      "commonProblems": "Check for turbo lag, brake squeal and HVAC noise.",
+      "workshopInstructions": "Perform ECU scan before service."
+    }
+  },
+  {
+    "id": "6",
+    "brand": "Tata",
+    "model": "Punch",
+    "variant": "Accomplished",
+    "fuelType": "Petrol",
+    "engine": "1.2L Revotron",
+    "engineCode": "Revotron",
+    "engineCapacity": "1199 cc",
+    "transmission": "Manual",
+    "driveType": "FWD",
+    "vehicleSegment": "Micro SUV",
+    "country": "India",
+    "year": "2023",
+    "serviceInterval": "15000 km / 12 months",
+    "engineOil": "5W-30",
+    "oilCapacity": "3.5 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "3.5 L",
+      "engineOilGrade": "5W-30",
+      "coolantCapacity": "5.5 L",
+      "brakeFluidType": "DOT 4",
+      "batterySpecification": "12V 45Ah",
+      "tyrePressureFront": "33 PSI",
+      "tyrePressureRear": "33 PSI"
+    },
+    "filtersAndParts": {
+      "oilFilter": "278012-0070",
+      "airFilter": "278002-0031"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 15,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brake pads" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "Use Tata-approved engine oil grade.",
+      "commonProblems": "Check suspension clunks and window motor function.",
+      "workshopInstructions": "Use diagnostic scanner to read fault codes."
+    }
+  },
+  {
+    "id": "7",
+    "brand": "Mahindra",
+    "model": "XUV700",
+    "variant": "AX5",
+    "fuelType": "Diesel",
+    "engine": "2.2L mHawk",
+    "engineCode": "mHawk",
+    "engineCapacity": "2184 cc",
+    "transmission": "Automatic",
+    "driveType": "FWD",
+    "vehicleSegment": "SUV",
+    "country": "India",
+    "year": "2023",
+    "serviceInterval": "10000 km / 12 months",
+    "engineOil": "5W-30",
+    "oilCapacity": "6.0 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "6.0 L",
+      "engineOilGrade": "5W-30",
+      "coolantCapacity": "9.0 L",
+      "brakeFluidType": "DOT 4",
+      "batterySpecification": "12V 75Ah",
+      "tyrePressureFront": "35 PSI",
+      "tyrePressureRear": "35 PSI"
+    },
+    "filtersAndParts": {
+      "oilFilter": "0650-A3860F",
+      "airFilter": "0650-R0011B",
+      "fuelFilter": "0650-A2530F"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 10,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace diesel engine oil 5W-30" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Fuel Filter", "replacementRequired": "no", "notes": "Inspect fuel filter" },
+          { "serviceName": "General Inspection", "replacementRequired": "no", "notes": "Full vehicle inspection" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "Use BS6-compliant diesel engine oil.",
+      "commonProblems": "Check for DPF clogging, auto gearbox behaviour and ADAS calibration.",
+      "workshopInstructions": "Perform AdBlue level check and DPF regeneration if required."
+    }
+  },
+  {
+    "id": "8",
+    "brand": "Mahindra",
+    "model": "Scorpio N",
+    "variant": "Z8",
+    "fuelType": "Diesel",
+    "engine": "2.2L mHawk",
+    "engineCode": "mHawk",
+    "engineCapacity": "2184 cc",
+    "transmission": "Manual",
+    "driveType": "4WD",
+    "vehicleSegment": "SUV",
+    "country": "India",
+    "year": "2023",
+    "serviceInterval": "10000 km / 12 months",
+    "engineOil": "5W-30",
+    "oilCapacity": "6.0 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "6.0 L",
+      "engineOilGrade": "5W-30",
+      "coolantCapacity": "9.5 L",
+      "brakeFluidType": "DOT 4",
+      "batterySpecification": "12V 75Ah",
+      "tyrePressureFront": "36 PSI",
+      "tyrePressureRear": "40 PSI"
+    },
+    "filtersAndParts": {
+      "oilFilter": "0650-A3860F",
+      "airFilter": "0650-R0011B",
+      "fuelFilter": "0650-A2530F"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 10,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace diesel engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "4WD System Check", "replacementRequired": "no", "notes": "Inspect 4WD engagement" },
+          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect brakes all round" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "Check 4WD transfer case oil at 40,000 km.",
+      "commonProblems": "Steering vibration, 4WD engagement issues, clutch pedal feel.",
+      "workshopInstructions": "Grease all 4WD drivetrain joints during service."
+    }
+  },
+  {
+    "id": "9",
+    "brand": "Honda",
+    "model": "City",
+    "variant": "VX",
+    "fuelType": "Petrol",
+    "engine": "1.5L i-VTEC",
+    "engineCode": "L15Z1",
+    "engineCapacity": "1498 cc",
+    "transmission": "CVT",
+    "driveType": "FWD",
+    "vehicleSegment": "Sedan",
+    "country": "India",
+    "year": "2023",
+    "serviceInterval": "10000 km / 12 months",
+    "engineOil": "0W-20",
+    "oilCapacity": "3.6 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "3.6 L",
+      "engineOilGrade": "0W-20",
+      "gearOilCapacity": "2.5 L",
+      "gearOilGrade": "CVT Fluid",
+      "coolantCapacity": "5.1 L",
+      "brakeFluidType": "DOT 3",
+      "batterySpecification": "12V 55Ah",
+      "tyrePressureFront": "33 PSI",
+      "tyrePressureRear": "33 PSI",
+      "sparkPlugGap": "1.0 mm"
+    },
+    "filtersAndParts": {
+      "oilFilter": "15400-PLM-A02",
+      "airFilter": "17220-5PA-A00",
+      "cabinFilter": "80292-TF0-G01"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 10,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace with Honda-approved 0W-20" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "CVT Fluid Inspection", "replacementRequired": "no", "notes": "Check CVT fluid level and condition" },
+          { "serviceName": "General Inspection", "replacementRequired": "no", "notes": "Full vehicle inspection" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "Use Honda Genuine CVT Fluid for transmission.",
+      "commonProblems": "CVT judder, AC compressor noise, fuel injector fouling.",
+      "workshopInstructions": "Check Honda HDS for fault codes before service."
+    }
+  },
+  {
+    "id": "10",
+    "brand": "Toyota",
+    "model": "Innova Crysta",
+    "variant": "GX",
+    "fuelType": "Diesel",
+    "engine": "2.4L GD",
+    "engineCode": "2GD-FTV",
+    "engineCapacity": "2393 cc",
+    "transmission": "Manual",
+    "driveType": "RWD",
+    "vehicleSegment": "MPV",
+    "country": "India",
+    "year": "2023",
+    "serviceInterval": "10000 km / 12 months",
+    "engineOil": "5W-30",
+    "oilCapacity": "6.9 L",
+    "technicalSpecifications": {
+      "engineOilCapacity": "6.9 L",
+      "engineOilGrade": "5W-30",
+      "coolantCapacity": "8.3 L",
+      "brakeFluidType": "DOT 4",
+      "batterySpecification": "12V 70Ah",
+      "tyrePressureFront": "35 PSI",
+      "tyrePressureRear": "41 PSI"
+    },
+    "filtersAndParts": {
+      "oilFilter": "90915-YZZD1",
+      "airFilter": "17801-0L040",
+      "fuelFilter": "23300-0L070"
+    },
+    "pmsSchedule": [
+      {
+        "interval": 10,
+        "serviceItems": [
+          { "serviceName": "Engine Oil", "replacementRequired": "yes", "notes": "Replace with 5W-30 diesel engine oil" },
+          { "serviceName": "Oil Filter", "replacementRequired": "yes", "notes": "Replace oil filter" },
+          { "serviceName": "Fuel Filter Inspection", "replacementRequired": "no", "notes": "Inspect fuel filter for clogging" },
+          { "serviceName": "Brake Inspection", "replacementRequired": "no", "notes": "Inspect all brake pads and discs" }
+        ]
+      }
+    ],
+    "additionalNotes": {
+      "specialNotes": "Use Toyota-approved 5W-30 engine oil only.",
+      "commonProblems": "Check for leaf spring noise, EGR clogging and injector fouling.",
+      "workshopInstructions": "Drain and fill coolant every 40,000 km. Check timing chain stretch."
+    }
+  }
+]
